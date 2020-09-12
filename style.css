@@ -18,3 +18,14 @@ main {
     width: 300px;
     height: 120px;
 }
+
+.js-code {
+    margin-left: 40px;
+}
+
+.react {
+    display: block;
+    color: whitesmoke;
+    background-color: #2c2c2c;
+    border-radius: 5px;
+}
