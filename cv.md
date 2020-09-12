@@ -25,7 +25,7 @@
     * React
     * Node JS
     * WebPack (low-level)
-    ---
+    --- ---
     Packages/libraries that I worked with, but I have a superficial knowledge of:
     * Mongoose
     * Axios

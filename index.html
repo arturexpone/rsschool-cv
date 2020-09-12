@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Summary of Matveev Atrur</title>
+</head>
+<body>
+  <main>
+    <img class="my-photo" src="https://sun9-37.userapi.com/c855136/v855136613/978f3/yq49dDU0tKA.jpg" alt="my-photo">
+    <h1 class="my-name">Artur Matveev</h1>
+    <section class="contacts">
+      <h2>Contact Info</h2>
+      <ul>
+        <li><strong>Phone</strong> - <a href="tel:+375298356142">+375 (29) 835-61-42</a></li>
+        <li><strong>Linkedin</strong> - <a href="https://www.linkedin.com/in/artur-matveev-23b4811a6">arturexpone</a></li>
+        <li><strong>Telegram</strong> - <a href="https://t.me/TrueStory1337">@TrueStory1337</a></li>
+        <li><strong>Viber</strong> - <a href="viber://chat?number=%2B3752983561427">+375 (29) 835-61-42</a></li>
+      </ul>
+    </section>
+    <section class="summary">
+      <h2>Summary</h2>
+      <p>
+        I am 24 years old. I live in Minsk.
+        I have a technical secondary special education, currently I am a 5th-year student of the University.
+        I study in absentia at the faculty of international law and legal psychology.
+        A result-oriented, meticulous novice web developer with non-commercial experience in creating various web
+        applications using <strong>HTML, CSS, JavaScript, React, Redux</strong>, and other technologies.
+        I have been studying the above-mentioned technology stack since mid-2019.
+        I first got into web development when trying to connect third-party services for the client (CRM).
+        Since that time, I have been regularly engaged in self-education in the field.
+        I am not afraid of complex tasks, and the more I learn about how web applications work,
+        the more interest they arouse in me :) At the time of writing this portfolio,
+        I can independently create fullstack applications with a level of complexity - up to average,
+        using popular libraries that are often used in production.
+        I know English at a low level and I'm already in the process of <i>fixing this bug</i> :)
+      </p>
+    </section>
+    <section class="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>React</li>
+        <li>Node JS</li>
+        <li>WebPack (low-level)</li>
+      </ul>
+      <hr>
+      <p><i>Packages/libraries that I worked with, but I have a superficial knowledge of:</i></p>
+      <ul>
+        <li>Mongoose</li>
+        <li>Axios</li>
+        <li>Socket.io</li>
+        <li>Fuzzy-search</li>
+        <li>Redux</li>
+        <li>Express</li>
+        <li>Material-UI</li>
+        <li>Firebase</li>
+        <li>cuid</li>
+        <li>semantic-ui-react</li>
+      </ul>
+    </section>
+    <section class="code-examples">
+      <h2>Code examples</h2>
+      <details>
+        <summary>Click here</summary>
+        <p class="js-code">JavaScript (React) code:</p>
+        <div class="react">
+          <pre>
+            <code>
+              import React, {useEffect, useState} from 'react';
+              import {NavLink} from 'react-router-dom';
+              import {compose} from 'redux';
+              import {firestoreConnect} from 'react-redux-firebase';
+              import {connect} from 'react-redux';
+
+              import {Loader} from '../layout/Loader';
+              import {createInput} from '../utils';
+
+
+              const EditClient = (props) => {
+
+                const { client, history, firestore, settings } = props;
+
+                let initialState = {
+                  firstName: '',
+                  lastName: '',
+                  email: '',
+                  phone: '',
+                  balance: '',
+                };
+
+                const [state, setState] = useState(initialState);
+
+                useEffect(() => {
+                  if (localStorage.getItem('uid') === '') {
+                    history.push('/login');
+                  }
+                });
+
+                if(!client) {
+                  return <Loader />
+                }
+
+                if (client.firstName && state.firstName === '') {
+                  setState(client);
+                }
+
+                let readyMountInput = [];
+
+                if (client) {
+                  readyMountInput = createInput([
+                    ['First Name','text', 'firstName'],
+                    ['Last Name','text', 'lastName'],
+                    ['Email', 'email', 'email'],
+                    ['Phone', 'text', 'phone'],
+                    ['Balance','text', 'balance', settings.disableBalanceOnEdit],
+                  ], state, setState);
+                }
+
+                const onSubmit = (e) => {
+                  e.preventDefault();
+                  firestore.update({collection: 'clients', doc: client.id}, state)
+                    .then(res => history.push('/'));
+                }
+                <xmp>
+                return (
+                  <div>
+                    <div className='row'>
+                      <div className='col-md-6'>
+                        <NavLink to='/' className='btn btn-link'>
+                          <i className='fas fa-arrow-circle-left'> </i> Back to dashboard
+                        </NavLink>
+                      </div>
+                    </div>
+
+                    <div className='card-header'>Edit client</div>
+                    <div className='card-body'>
+                      <form onSubmit={onSubmit}>
+                        {readyMountInput}
+
+                        <input type='submit' value='Submit' className='btn btn-primary btn-block'/>
+                      </form>
+                    </div>
+                  </div>
+                )
+              }
+              </xmp>
+              export default compose(firestoreConnect((props) => [{
+                  collection: 'clients',
+                  storeAs: 'client',
+                  doc: props.match.params.id
+                }]),
+                connect(({ firestore: { ordered }, settings, notify, firebase }, props) => ({
+                  client: ordered.client && ordered.client[0],
+                  settings,
+                  auth: firebase.auth
+                })))(EditClient);
+              </code>
+          </pre>
+        </div>
+        <p><i>More examples of my work can be found here: </i><a href="https://arturexpone.netlify.app/projects">click</a></p>
+      </details>
+
+    </section>
+    <section class="experience">
+      <h2>Experience</h2>
+      <p>I have some non-commercial experience.</p>
+      <ul>
+        <li>Create a simple SPA.</li>
+        <li>Creating simple servers on Node JS (CRUD).</li>
+        <li>Implementation of server data exchange between two services (CRM [oauth 2.0 authorization is used] and courier delivery service).</li>
+        <li>Development of simple applications within the Bitrix 24 CRM ecosystem, using the REST API.</li>
+        <li>Build online stores on CMS 1c-Bitrix and Wordpress, connect payment systems to them, deploy on hosting,
+          install SSL certificates, etc</li>
+      </ul>
+      <p>Source code for some projects:</p>
+      <ol>
+        <li><a href="https://github.com/arturexpone/client-panel">Client-panel (React & Redux & Firebase)</a></li>
+        <li><a href="https://github.com/arturexpone/messenger">Messenger (React & Redux & Socket.io & Mongo)</a></li>
+        <li><a href="https://github.com/arturexpone/excel">Excel (Native JS)</a></li>
+        <li><a href="https://github.com/arturexpone/contact-manager">Contact manager (React & Redux & Thunk & Bootstrap)</a></li>
+        <li><a href="https://github.com/arturexpone/rock-paper-scissors">Game [rock-paper-scissors] (Native JS)</a></li>
+        <li><a href="https://github.com/arturexpone/sorting-data-of-random-users">Sorting data of random users (Native JS)</a></li>
+        <li><a href="https://github.com/arturexpone/seat-reservation">Seat reservation (Native JS)</a></li>
+        <li><a href="https://github.com/arturexpone/drag-drop-list">Drag-drop list (Native JS)</a></li>
+      </ol>
+      <hr>
+    </section>
+    <section class="education">
+      <h2>Education</h2>
+      <p>
+        Secondary special technical education, graduated in 2014.
+        At the moment, I am receiving higher education (in absentia, 5th year).
+        Experience gained from various courses:
+      </p>
+      <ol>
+        <li>HTML Academy (paid and free, html & css & js).</li>
+        <li>React, path of the samurai 1.0.</li>
+        <li>FreeCodeCamp (partially).</li>
+        <li>5 kata on codewars.</li>
+        <li>Some courses on Udemy.</li>
+      </ol>
+    </section>
+    <section class="english">
+      <h2>English</h2>
+      <p>There was no practice in English, I studied German at school.
+        I am engaged in independent study, at the moment level A2.</p>
+    </section>
+  </main>
+</body>
+</html>
