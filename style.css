@@ -1,0 +1,25 @@
+main {
+    margin: 30px auto;
+    padding: 10px 20px;
+    display: block;
+    max-width: 1024px;
+    font: normal 18px "Helvetica Neue", sans-serif;
+    border: 1px solid red;
+}
+
+.my-photo {
+    margin-right: 50px;
+    float: left;
+    width: 200px;
+    height: 250px;
+}
+
+.my-name {
+
+}
+
+.contacts {
+    display: inline-block;
+    width: 300px;
+    height: 120px;
+}

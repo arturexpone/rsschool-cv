@@ -1,5 +1,5 @@
 1.  #### Artur Matveev
-2.  #### Contact Info
+2.  #### `Contact Info`
     * Mobile phone - **+375 (29) 835 61 42**
     * Linkedin - [click](https://www.linkedin.com/in/artur-matveev-23b4811a6)
     * Telegram - [click](https://t.me/TrueStory1337)
@@ -25,7 +25,7 @@
     * React
     * Node JS
     * WebPack (low-level)
-    ---
+    --- ---
     Packages/libraries that I worked with, but I have a superficial knowledge of:
     * Mongoose
     * Axios
