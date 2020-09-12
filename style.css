@@ -4,7 +4,6 @@ main {
     display: block;
     max-width: 1024px;
     font: normal 18px "Helvetica Neue", sans-serif;
-    border: 1px solid red;
 }
 
 .my-photo {
